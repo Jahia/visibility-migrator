@@ -1,7 +1,8 @@
 # visibility-migrator
 
-Removes the legacy `visibility` / `advanced-visibility` modules so that jContent can take over their
-visibility condition node types.
+Removes the legacy `visibility` / `advanced-visibility` modules so that jContent can take ownership of
+visibility condition node types. Installation is a prerequisite if visibility modules are present and 
+upgrading to jContent > 3.7.1
 
 ## Why it exists
 
