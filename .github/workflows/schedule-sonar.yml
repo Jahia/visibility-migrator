@@ -1,0 +1,17 @@
+# This workflow triggers a full Sonar analysis at regular intervals,
+# independently of any pull request, so quality-gate drift is caught between PRs.
+name: Sonar Analysis - Scheduled
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 1,3,5' # At 4AM, on Monday, Wednesday and Friday
+
+jobs:
+  sonar-analysis:
+    uses: Jahia/jahia-modules-action/.github/workflows/reusable-sonar-scan.yml@v2
+    secrets: inherit
+    with:
+      module_id: visibility-migrator
+      github_slug: Jahia/visibility-migrator
+      git_branch: main
