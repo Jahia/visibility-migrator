@@ -25,3 +25,4 @@ jobs:
       sbom_execute: true
       sbom_hostname: ${{ vars.DEPENDENCYTRACK_HOSTNAME }}
       publish_execute: ${{ github.ref == 'refs/heads/main' }}
+      publish_container_image: ghcr.io/jahia/jahia-docker-mvn-cache:11-jdk-noble-mvn-loaded
