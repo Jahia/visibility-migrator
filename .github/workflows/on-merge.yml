@@ -1,0 +1,27 @@
+name: On merge to main
+
+on:
+  push:
+    branches:
+      - main
+      - /feature-.*/
+      - /[0-9]_[0-9]_x/
+      - /[0-9]_x/
+    tags-ignore:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  WF:
+    uses: Jahia/jahia-modules-action/.github/workflows/reusable-on-code-change.yml@v2
+    secrets: inherit
+    with:
+      module_id: visibility-migrator
+      module_branch: ${{ github.ref }}
+      update_signature_execute: true
+      sbom_execute: true
+      sbom_hostname: ${{ vars.DEPENDENCYTRACK_HOSTNAME }}
+      publish_execute: ${{ github.ref == 'refs/heads/main' }}
